@@ -16,14 +16,11 @@ server.use(express.urlencoded({ extended: true }));
 server.set('view engine','ejs');
 
 server.get('/',(req,res) => {
-    res.render('index');
+    res.render('pages/index');
 })
 
-// server.get('/mybooks',(req,res) => {
-//     res.render('index');
-// })
 
-server.get('/serch',(req,res) => {
+server.get('/search',(req,res) => {
     let bookname =req.query.searchBook;
     let select =req.query.sort;
     let url = `https://www.googleapis.com/books/v1/volumes?q=${bookname}+${select}:keyes`
@@ -32,7 +29,7 @@ server.get('/serch',(req,res) => {
         let bookarr =BooksData.body.items.map(value => {
             return new Book(value)
         })
-        res.render('./pages/searches/serch',{booksARR:bookarr.body})
+        res.render('pages/searches/show',{booksARR:bookarr})
     })
 })
 
@@ -43,10 +40,10 @@ server.listen(PORT,()=> {
 
 
 
-function Book(bookData) {
-    this.imgurl=bookData.volumeInfo.imageLinks.smallhumbnail;
-    this.title=bookData.volumeInfo.title;
-    this.authors=bookData.volumeInfo.authors;
-    this.description =bookData.volumeInfo.description;
+function Book(DATA) {
+    this.imgurl=DATA.volumeInfo.imageLinks.smallhumbnail;
+    this.title=DATA.volumeInfo.title;
+    this.authors=DATA.volumeInfo.authors;
+    this.description =DATA.volumeInfo.description;
 
 }
