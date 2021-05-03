@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -35,5 +35,42 @@
     </form>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="/mnt/c/Users/Suhaib/book-app/public/app.js"></script>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+    
+<body>
+    
+    <main>
+
+        <div class="toggle"><a href="/">Home</a></div>
+        <div class="toggle" id="searchNav"><a href="/searches">Search</a></div>
+
+        <div id="topForm"><p>Search By Title Or Author</p></div>
+
+        <section>
+            <% let count = 0; %>
+            <% detalobj.forEach(value =>{ %>
+                <%count++;%>  
+                
+            <div class="card">
+                <img src="<%= value.image_url %>" alt="">
+                <h2><%= value.title %> </h2>
+                <h2><%= value.author %></h2>
+                <p><%= value.description %></p>
+                <form action="/books/<%= value.id%>">
+                    <button id="btn" type="submit"> View Details </button>
+                </form>
+            </div>
+       <% }) %>
+        </section>
+         <h5><%= count%> Books in the Collection</h5>
+        
+
+    </main>
+   
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
