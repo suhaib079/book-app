@@ -1,39 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/public/styles/layout.css">
-    <link rel="stylesheet" href="/public/styles/base.css">
-    <link rel="stylesheet" href="/public/styles/reset.css">
-</head>
-<body>
-    <h1>books</h1>
-    <a href="/">home</a>
-    <a href="#">search</a>
-     
-    <div id="topForm"><p>Search By Title Or Author</p></div>
-    <form action="/search" class = 'form'>
-      
-        
-        <input id="searchBar" type="text" placeholder="Enter a Title Or Author" name="searchBook">
-
-        <div class="radio">
-            <label for="">Title&nbsp;&nbsp;&nbsp;</label>
-            <input type="radio" name="sort" value="intitle" class="rTitle" >
-        </div>
-       
-        <div class="radio">
-            <label for="">Author</label>
-            <input type="radio" name="sort" value="inauthor" class="rAuthor" >
-        </div>
     
-     <a href="/search"><input type="submit" value="Search using Google API Books" id="submit"></a>
+<body>
+    
+    <main>
 
-    </form>
+        <div class="toggle"><a href="/">Home</a></div>
+        <div class="toggle" id="searchNav"><a href="/searches">Search</a></div>
+
+        <div id="topForm"><p>Search By Title Or Author</p></div>
+
+        <section>
+            
+            <% homedata.forEach(value =>{ %>
+                
+                
+            <div class="card">
+                <img src="<%= value.image_url %>" alt="">
+                <h2><%= value.title %> </h2>
+                <h2><%= value.author %></h2>
+                <p><%= value.description %></p>
+                <form action="/books/<%= value.id%>">
+                    <button id="btn" type="submit"> View Details </button>
+                </form>
+            </div>
+       <% }) %>
+        </section>
+         
+        
+
+    </main>
+   
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="/mnt/c/Users/Suhaib/book-app/public/app.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
