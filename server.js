@@ -62,6 +62,7 @@ server.post('/searches/new', infoHandler)
 server.post('/addbook', addHandler)
 server.get('/books/:id', detailHandler)
 server.put('/books/:id', udatehandler)
+server.delete('/books/:id', deletehandler)
 
 
 
@@ -152,3 +153,13 @@ client.connect()
             console.log(`Listening to Port ${PORT}`)
         });
     });
+
+    function deletehandler(req, res) {
+        let SQL = `DELETE FROM book WHERE id=$1;`
+        let safeValues = [req.params.id]
+    
+        client.query(SQL, safeValues)
+            .then(() => {
+                res.redirect('/');
+            })
+    }
