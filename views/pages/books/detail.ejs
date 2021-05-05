@@ -2,19 +2,19 @@
 <html lang="en">
    
 <body>
-   
+ 
     
     <div class="toggle" id="firstToggle"><a href="/">Home</a></div>
     <div class="toggle" id="searchNav"><a href="/searches">Search</a></div>
    
     <main> <div class="card">
-            <img src="<%= book.image_url %>" alt="">     
-            <h2><%= book.title %> </h2>
-            <h2><%= book.author %></h2>
-            <h2><%= book.isbn%></h2>
-            <p><%= book.description %></p>
+            <img src="<%= detalobj.image_url %>" alt="">     
+            <h2><%= detalobj.title %> </h2>
+            <h2><%= detalobj.author %></h2>
+            <h2><%= detalobj.isbn%></h2>
+            <p><%= detalobj.description %></p>
             <button id="updateBtn">Update Book</button>
-            <form action="/books/<%=book.id%>?-method=delete" method="POST">
+            <form action="/books/<%=detalobj.id%>?-method=delete" method="POST">
                 <button id="deleteBtn"> Delete </button>
             </form>
     </div>  
