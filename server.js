@@ -108,13 +108,15 @@ function addHandler(req, res) {
 
 
 function detailHandler(req, res) {
-    // console.log(req.params)
+    //  console.log(req.params)
     let SQL = `SELECT * FROM book WHERE id=$1;`
     let safeValues = [req.params.id]
-    console.log(safeValues)
+    // console.log(safeValues)
     client.query(SQL, safeValues)
         .then(result => {
+            console.log(result.rows[0]);
             res.render('pages/books/detail', { detalobj: result.rows[0] })
+
         })
 }
 
